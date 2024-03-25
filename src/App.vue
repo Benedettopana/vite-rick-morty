@@ -44,9 +44,8 @@ export default {
 </script>
 
 <template>
-  <div>
-    <div class="text-danger">Bootstrap</div>
-  </div>
+  <Header />
+  <Main />
 </template>
 
 <style lang="scss">
