@@ -20,7 +20,7 @@ export default {
 <template>
   <div class="container-xl">
     <!-- Search-bar -->
-    <div class="">
+    <div class="mt-5 mb-4">
       <div class="d-flex justify-content-center align-items-center">
         <div class="d-flex">
           <!-- Input Form -->
