@@ -30,4 +30,6 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+@use "../assets/scss/main.scss" as *;
+</style>
