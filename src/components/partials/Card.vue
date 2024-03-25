@@ -24,12 +24,17 @@ export default {
 @use "../../assets/scss/main.scss" as *;
 .card {
   padding: 5px 10px;
-  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  transition: all 0.5s;
+  &:hover {
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    scale: 1.03;
+  }
 
   & img {
     width: 150px;
     aspect-ratio: 1;
     border-radius: 50%;
+    transition: all 0.5s;
     box-shadow: 10px 10px 29px -21px rgba(0, 0, 0, 0.75);
   }
   p {
