@@ -24,11 +24,7 @@ export default {
         .get(this.store.apiUrl, {})
         // prendo i risultati della richiesta API
         .then((result) => {
-          result.data.results.forEach((element, index) => {
-            this.store.cardList.push(element);
-            console.log("loop ----> ", index);
-          });
-          // this.store.cardList = result.data.results;
+          this.store.cardList = result.data.results;
           console.log(this.store.cardList);
         })
         .catch((error) => {

@@ -14,12 +14,16 @@ export default {
 
   methods: {
     searchCharacter() {
-      this.store.searchResults = [];
+      this.store.cardList = [];
       axios
-        .get(`${this.store.apiName}${this.searchQuery}`)
+        .get(this.store.apiUrl, {
+          params: {
+            name: this.searchQuery,
+          },
+        })
         .then((response) => {
           // Aggiorno il risultato della ricerca
-          store.searchResults = response.data.results;
+          store.cardList = response.data.results;
           // Parte l'evento in ascolto dal main per la visualizzazione dei risultati
           this.$emit("search-results-updated");
         })
@@ -31,13 +35,7 @@ export default {
     resetSearch() {
       // Resetto le var di ricerca
       this.searchQuery = "";
-      store.searchResults = [];
-    },
-  },
-
-  computed: {
-    searchResults() {
-      return this.store.searchResults;
+      //todo: aggiungere emit
     },
   },
 };
@@ -57,7 +55,7 @@ export default {
           type="text"
           placeholder="Select Character"
           v-model="searchQuery"
-          @input="searchCharacter"
+          @keyup.enter="searchCharacter"
         />
         <!-- /Input Form -->
         <!-- SELECT -->

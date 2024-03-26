@@ -16,21 +16,14 @@ export default {
   },
 
   computed: {
-    charactersToShow() {
-      console.log(this.store.searchResults.length);
-      return this.store.searchResults.length > 0
-        ? this.store.searchResults
-        : this.store.cardList;
-    },
-
     filteredCharacters() {
       if (!this.inputSearch) {
         // Se inputSearch è vuoto, restituisci l'intera lista di personaggi
-        return this.charactersToShow;
+        return this.store.cardList;
       } else {
         // Altrimenti, filtra la lista di personaggi in base all'input di ricerca
         const searchQuery = this.inputSearch.toLowerCase();
-        return this.charactersToShow.filter((character) =>
+        return this.store.cardList.filter((character) =>
           character.name.toLowerCase().includes(searchQuery)
         );
       }
