@@ -14,41 +14,36 @@ export default {
       selectSearch: "",
     };
   },
+
+  computed: {
+    charactersToShow() {
+      console.log(this.store.searchResults.length);
+      return this.store.searchResults.length > 0
+        ? this.store.searchResults
+        : this.store.cardList;
+    },
+
+    filteredCharacters() {
+      if (!this.inputSearch) {
+        // Se inputSearch è vuoto, restituisci l'intera lista di personaggi
+        return this.charactersToShow;
+      } else {
+        // Altrimenti, filtra la lista di personaggi in base all'input di ricerca
+        const searchQuery = this.inputSearch.toLowerCase();
+        return this.charactersToShow.filter((character) =>
+          character.name.toLowerCase().includes(searchQuery)
+        );
+      }
+    },
+  },
 };
 </script>
 
 <template>
   <div class="container-xl">
-    <!-- Search-bar -->
-    <div class="mt-5 mb-4">
-      <div class="d-flex justify-content-center align-items-center">
-        <div class="d-flex">
-          <!-- Input Form -->
-          <input
-            class="form-control mx-2"
-            type="text"
-            placeholder="Select Character"
-            aria-label=""
-          />
-          <!-- /Input Form -->
-          <!-- SELECT -->
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Select Status</option>
-            <option value="1">Alive</option>
-            <option value="2">Dead</option>
-            <option value="3">Unknown</option>
-          </select>
-          <!-- /SELECT -->
-        </div>
-        <div class="">
-          <div class="btn btn-info mx-2">Search</div>
-          <div class="btn btn-warning">Reset</div>
-        </div>
-      </div>
-    </div>
     <div class="row row-cols-3 mt-3">
       <Card
-        v-for="item in this.store.cardList"
+        v-for="item in filteredCharacters"
         :key="item.id"
         :image="item.image"
         :name="item.name"

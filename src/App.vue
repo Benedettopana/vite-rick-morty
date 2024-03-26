@@ -35,6 +35,11 @@ export default {
           console.log(error);
         });
     },
+
+    handleSearchResults(results) {
+      // Aggiorno i dati della ricerca
+      this.store.searchResults = results;
+    },
   },
 
   mounted() {
@@ -44,7 +49,7 @@ export default {
 </script>
 
 <template>
-  <Header />
+  <Header @search-results-updated="handleSearchResults" />
   <Main />
 </template>
 
